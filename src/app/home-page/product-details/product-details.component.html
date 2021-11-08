@@ -1,0 +1,48 @@
+<div class="backdrop"></div>
+<div class="details-box">
+
+  <div class="pull-right" style="text-align: right">
+    <button mat-raised-button
+            color="warn"
+            (click)="onClose()"
+            type="button"> X </button>
+  </div>
+  <div class="details-box-actions ">
+    <div>
+      <h2>{{product.name}}</h2>
+    </div>
+    <hr>
+    <div>
+      <img
+        [src]="product.photo"
+        class="img-rounded imagine"
+        style="max-height: 250px; max-width: 100%;"
+        [alt]="product.name"
+      >
+      <hr>
+    </div>
+    <div>
+      <p><b>Description: </b>{{product.description}}</p>
+      <p><b>Breed: </b>{{product.forBreed}}</p>
+      <p><b>Category: </b>{{product.category}}</p>
+      <p><b>Price: </b>{{product.price}} RON</p>
+      <p *ngIf="product.stock <= 10"> <b> Hurry up! There are less then 10 products available in our stock!</b></p>
+    </div>
+    <div >
+      <p-inputNumber
+        #pcs
+        mode="decimal"
+        [showButtons]="true"
+        inputId="minmax-buttons"
+        [min]="1">
+      </p-inputNumber>
+      <button
+        style="margin: 5px"
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="this.product.stock < pcs.value">Add to Cart</button>
+      <p *ngIf="this.product.stock < pcs.value"> Out of stock!</p>
+    </div>
+  </div>
+</div>

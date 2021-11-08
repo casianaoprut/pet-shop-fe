@@ -5,6 +5,7 @@ export class Product{
               public forBreed: string,
               public category: string,
               public stock: number,
-              public photo: Blob) {
+              public photo: Blob,
+              public price: number) {
   }
 }
