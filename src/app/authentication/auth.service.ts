@@ -35,12 +35,8 @@ export class AuthService {
   }
 
   public login(username: string, password: string): Observable<AuthResponseData>{
-    return this.http.post<AuthResponseData>(
-      "http://localhost:8080/user/login",
-      {
-        username: username,
-        password: password
-      }).pipe(
+    return this.http.get<AuthResponseData>(
+      "http://localhost:8080/user/login").pipe(
         tap(respData => {
             this.handleUsers({
               username: respData.username,
