@@ -1,0 +1,8 @@
+<app-sign-in *ngIf="signInMode"></app-sign-in>
+<app-sign-up *ngIf="!signInMode"></app-sign-up>
+<div style="text-align: center;margin-top: 10px">
+  <button
+    mat-button
+    (click)="onChangeMode()"
+  >{{signInMode? "Don't have an account?" : "Already have an account?"}}</button>
+</div>

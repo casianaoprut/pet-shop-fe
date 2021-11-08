@@ -1,0 +1,37 @@
+<div class="form">
+  <form #f="ngForm" class="example-form" (ngSubmit)="onSignUp(f)">
+    <div style="text-align: center">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          name="username"
+          matInput
+          ngModel
+          placeholder="Ex. name@domain.org"
+          required
+          email
+        >
+      </mat-form-field>
+    </div>
+    <div class="container" style="text-align: center">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          ngModel
+          name="password"
+          [type]="hide ? 'password' : 'text'"
+          required
+          minlength="4"
+        >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div style="text-align: center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Sign Up</button>
+    </div>
+  </form>
+</div>
