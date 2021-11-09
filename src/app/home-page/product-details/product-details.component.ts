@@ -23,4 +23,8 @@ export class ProductDetailsComponent implements OnInit {
     this.closeDetails.emit();
   }
 
+  checkStock(value: string) {
+    const number = +value;
+    return this.product.stock < number;
+  }
 }
