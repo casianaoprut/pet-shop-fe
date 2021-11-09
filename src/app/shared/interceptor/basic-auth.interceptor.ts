@@ -21,7 +21,6 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     const isPublicUrl = request.url.endsWith("/product/all") ||
                         request.url.endsWith("/product/filter") ||
                         request.url.endsWith("/user/create");
-    console.log(isLoggedIn && isApiUrl && !isPublicUrl);
     if(isLoggedIn && isApiUrl && !isPublicUrl){
       request = request.clone({
         setHeaders: {
