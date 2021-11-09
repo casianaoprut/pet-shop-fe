@@ -45,6 +45,10 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<AuthResponseData>{
     const authData = window.btoa(username+ ":" + password);
+    this.handleUsers({
+      userName: username,
+      authData: authData
+    });
     return this.http.get<AuthResponseData>(this.apiUrl + "/login").pipe(
       map(user => {
         const myUser = {
