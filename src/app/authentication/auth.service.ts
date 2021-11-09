@@ -5,6 +5,7 @@ import {map, tap} from "rxjs/operators";
 import {BehaviorSubject, Observable} from "rxjs";
 import {User} from "../shared/model/User";
 import {environment} from "../../environments/environment";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
 
   apiUrl = environment.apiUrl + "/user";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     if (localStorage.getItem(this.USER_KEY) != null){
       this.userSubject = new BehaviorSubject<User | null>(JSON.parse(<string>localStorage.getItem(this.USER_KEY)));
     }
@@ -43,6 +45,10 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<AuthResponseData>{
     const authData = window.btoa(username+ ":" + password);
+    this.handleUsers({
+      userName: username,
+      authData: authData
+    });
     return this.http.get<AuthResponseData>(this.apiUrl + "/login").pipe(
       map(user => {
         const myUser = {
@@ -58,6 +64,7 @@ export class AuthService {
   public logout(): void{
     this.userSubject.next(null);
     localStorage.removeItem(this.USER_KEY);
+    this.router.navigate(["/authentication"]);
   }
 
   private handleUsers(user: User): void{

@@ -1,6 +1,7 @@
 <div class="form">
   <form #f="ngForm" class="example-form" (ngSubmit)="onSignIn(f)">
     <div style="text-align: center">
+      <h1>Sign in</h1>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
         <input
@@ -19,6 +20,7 @@
         <mat-label>Enter your password</mat-label>
         <input
           matInput
+          ngModel
           name="password"
           [type]="hide ? 'password' : 'text'"
           required
