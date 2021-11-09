@@ -5,9 +5,7 @@ import {AuthComponent} from "./authentication/auth.component";
 
 const routes: Routes = [
   {path: "", redirectTo:"home-page", pathMatch: "full"},
-  {path: "home-page", component: HomePageComponent}
-];
-const routes: Routes = [
+  {path: "home-page", component: HomePageComponent},
   {path: 'authentication', component: AuthComponent},
 ];
 
