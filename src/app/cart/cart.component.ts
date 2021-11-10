@@ -21,4 +21,14 @@ export class CartComponent implements OnInit {
     this.cartService.deleteProductFromCart(cartElement);
     window.location.reload();
   }
+
+  onUpdateCart() {
+    this.cartService.updateCart(this.cart);
+  }
+
+  getPrice(){
+    let sum = 0;
+    this.cart.forEach(elem => sum = sum + (elem.product.price * elem.quantity));
+    return sum;
+  }
 }
