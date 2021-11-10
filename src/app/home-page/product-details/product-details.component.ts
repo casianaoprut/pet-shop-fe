@@ -15,6 +15,9 @@ export class ProductDetailsComponent implements OnInit {
   @Output()
   closeDetails = new EventEmitter<void>();
 
+  @Output()
+  openDialog = new EventEmitter<void>();
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -31,5 +34,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(value: string) {
     this.cartService.addProductToCart(this.product, +value);
+    this.openDialog.emit();
+    this.closeDetails.emit();
   }
 }

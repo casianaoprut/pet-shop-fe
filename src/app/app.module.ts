@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './authentication/auth.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {AddedToCartDialog, HomePageComponent} from './home-page/home-page.component';
 import { ProductComponent } from './home-page/product/product.component';
 import { ProductDetailsComponent } from './home-page/product-details/product-details.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +32,7 @@ import { CartComponent } from './cart/cart.component';
     AuthComponent,
     HeaderComponent,
     CartComponent,
+    AddedToCartDialog
   ],
   imports: [
     AppRoutingModule,
