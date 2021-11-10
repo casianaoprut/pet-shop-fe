@@ -6,7 +6,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Cart</button>
+    <button mat-menu-item routerLink="/cart">Cart</button>
     <button mat-menu-item>My Orders</button>
     <button *ngIf="user != null && user.role === 'ADMIN'" mat-menu-item>All orders</button>
     <button *ngIf="user != null && user.role === 'ADMIN'" mat-menu-item>Manage Orders</button>

@@ -19,6 +19,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProductComponent } from './home-page/product/product.component';
 import { ProductDetailsComponent } from './home-page/product-details/product-details.component';
 import { HeaderComponent } from './header/header.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HeaderComponent } from './header/header.component';
     SignUpComponent,
     SignInComponent,
     AuthComponent,
-    HeaderComponent
+    HeaderComponent,
+    CartComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -38,6 +38,7 @@
         mat-raised-button
         color="primary"
         type="button"
+        (click)="addToCart(pcs.value)"
         [disabled]="checkStock(pcs.value)">Add to Cart</button>
       <p *ngIf="checkStock(pcs.value)"> Out of stock!</p>
     </div>

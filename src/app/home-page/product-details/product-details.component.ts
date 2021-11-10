@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../shared/model/product.model";
+import {CartService} from "../../cart/cart.service";
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   @Output()
   closeDetails = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +27,9 @@ export class ProductDetailsComponent implements OnInit {
   checkStock(value: string) {
     const number = +value;
     return this.product.stock < number;
+  }
+
+  addToCart(value: string) {
+    this.cartService.addProductToCart(this.product, +value);
   }
 }

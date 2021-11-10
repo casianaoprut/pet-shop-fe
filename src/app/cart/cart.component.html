@@ -1,0 +1,20 @@
+<div *ngFor="let cartElement of cart">
+  <p-panel header="{{cartElement.product.name}}">
+    <div *ngIf="cartElement.product.photo !== undefined">
+      <img
+        src="/assets/image-not-found.png"
+        class="img-responsive "
+        style="max-height: 100px; max-width: 100%; display: inline-block; margin-right: 20px;"
+        [alt]="cartElement.product.name"
+      >
+      <div style="display: inline-block">
+        <h5>Price: {{cartElement.product.price}}.</h5>
+        <h5>Breed: {{cartElement.product.forBreed}}</h5>
+        <mat-form-field appearance="fill">
+          <input [(ngModel)]="cartElement.quantity" matInput type="number" placeholder="Ex. 12" min="1">
+          <span matSuffix>pcs.</span>
+        </mat-form-field>
+      </div>
+    </div>
+  </p-panel>
+</div>

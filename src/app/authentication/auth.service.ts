@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthResponseData} from "../shared/model/auth-response-data.model";
 import {map, tap} from "rxjs/operators";
 import {BehaviorSubject, Observable} from "rxjs";
-import {User} from "../shared/model/User";
+import {User} from "../shared/model/user";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 
