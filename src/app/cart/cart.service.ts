@@ -14,16 +14,12 @@ export class CartService {
   public addProductToCart(product: Product, quantity: number): void{
     const cart: CartElement[] = localStorage.getItem(this.cartKey) != null ?
                                 JSON.parse(<string>localStorage.getItem(this.cartKey)) : [];
-    this.updateElementInCart(cart, {product: product, quantity: quantity});
+    this.addElementInCart(cart, {product: product, quantity: quantity});
     localStorage.setItem(this.cartKey,JSON.stringify(cart));
   }
 
-  private updateElementInCart(cart: CartElement[], cartElement: CartElement): CartElement[]{
-    const elemIndex = cart.findIndex((elem => {
-      console.log(elem.product.name);
-      console.log(cartElement.product.name);
-      return elem.product.name == cartElement.product.name
-    }));
+  private addElementInCart(cart: CartElement[], cartElement: CartElement): CartElement[]{
+    const elemIndex = cart.findIndex((elem => elem.product.name == cartElement.product.name));
     elemIndex == -1? cart.push(cartElement) : cart[elemIndex] = {product: cartElement.product,
                                                                  quantity: cartElement.quantity + cart[elemIndex].quantity};
     return cart;
@@ -38,4 +34,15 @@ export class CartService {
   }
 
 
+  public deleteProductFromCart(cartElement: CartElement) {
+    const cart: CartElement[] = localStorage.getItem(this.cartKey) != null ?
+      JSON.parse(<string>localStorage.getItem(this.cartKey)) : [];
+    const elemIndex = cart.findIndex((elem => elem.product.name == cartElement.product.name));
+    if(elemIndex != -1){
+      cart.splice(elemIndex,1);
+      console.log(cart);
+    }
+
+    localStorage.setItem(this.cartKey,JSON.stringify(cart));
+  }
 }

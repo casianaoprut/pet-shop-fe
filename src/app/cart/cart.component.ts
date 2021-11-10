@@ -17,4 +17,8 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getCartProducts();
   }
 
+  onDelete(cartElement: CartElement) {
+    this.cartService.deleteProductFromCart(cartElement);
+    window.location.reload();
+  }
 }
