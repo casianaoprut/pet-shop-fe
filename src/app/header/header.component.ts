@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../shared/model/User";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {User} from "../shared/model/user";
 import {AuthService} from "../authentication/auth.service";
 import {Subscription} from "rxjs";
 
@@ -8,7 +8,7 @@ import {Subscription} from "rxjs";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   user: User|null = null;
 
@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
     this.userSubscription = this.authService.userSubject.subscribe(user => {
       this.user = user;
     });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
   doLogout() {
