@@ -1,7 +1,7 @@
 <div class="center-screen">
   <div *ngFor="let order of orderList">
-    <div style="max-width: 600px">
-      <p-panel header="Order with id: {{order.id}}" style="margin: 10px; text-align: left">
+    <div style="max-width: 600px; margin: 10px; text-align: left">
+      <p-panel header="Order with id: {{order.id}}">
         <p><b>Total Price: </b> {{order.price}} RON</p>
         <p><b>Added date: </b>{{order.date}}</p>
         <p><b>Status: </b> {{order.status}}</p>

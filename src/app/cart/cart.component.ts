@@ -60,9 +60,10 @@ export class CartComponent implements OnInit, OnDestroy {
     );
     this.orderService.addOrder({
       orderParts: orderParts
-    });
-    this.cartService.emptyCart();
-    this.router.navigate(["/my-orders"]).then(() =>{});
+    }).subscribe(() => {
+      this.cartService.emptyCart();
+      this.router.navigate(["/my-orders"]).then(() =>{});
+    }).unsubscribe();
   }
 
   public checkStock(cartElement: CartElement) {

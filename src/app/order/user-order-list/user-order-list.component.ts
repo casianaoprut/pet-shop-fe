@@ -18,7 +18,6 @@ export class UserOrderListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.orderSubscription = this.orderService.getUserOrders().subscribe( orderList => {
-      console.log(orderList);
       if(orderList != null){
         this.orderList = orderList;
       }
