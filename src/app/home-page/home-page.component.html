@@ -1,6 +1,14 @@
 <div class="center-screen">
   <div *ngFor="let product of productList" style="width: 230px; margin: 5px; display: inline-block">
-    <app-product [product]="product" (openDialog)="openDialog()"></app-product>
+    <app-product [product]="product"></app-product>
+  </div>
+  <div class="pull-right">
+    <div class="button-container">
+      <mat-chip-list *ngIf="!isCartEmpty" class="floatChip"><mat-chip selected color="warn">{{cartQuantity}}</mat-chip></mat-chip-list>
+      <button class="floatButton" mat-fab color="primary" [disabled]="isCartEmpty" routerLink="/cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
 

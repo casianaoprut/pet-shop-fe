@@ -68,7 +68,6 @@ export class AuthService {
   }
 
   private handleUsers(user: User): void{
-
     this.userSubject.next(user);
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }

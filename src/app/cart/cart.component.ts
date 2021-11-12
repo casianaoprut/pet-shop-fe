@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from "./cart.service";
 import {CartElement} from "../shared/model/cart-element.model";
 import {OrderPart} from "../shared/model/order-part.model";
 import {OrderService} from "../order/order.service";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   cart: CartElement[] = [];
+
+  cartSubscription = new Subscription();
 
   constructor(private cartService: CartService,
               private orderService: OrderService,
               private router: Router) { }
 
   ngOnInit(){
-    this.cart = this.cartService.getCartProducts();
+    this.cartSubscription = this.cartService.cartListSubject.subscribe( cartList => {
+        this.cart = cartList;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
   }
 
   onDelete(cartElement: CartElement) {
     this.cartService.deleteProductFromCart(cartElement);
-    window.location.reload();
   }
 
   onUpdateCart() {
@@ -46,7 +54,7 @@ export class CartComponent implements OnInit {
       }
     );
     this.orderService.addOrder({
-      orderPartViews: orderParts
+      orderParts: orderParts
     });
     this.cartService.emptyCart();
     this.router.navigate(["/my-orders"]).then(() =>{});

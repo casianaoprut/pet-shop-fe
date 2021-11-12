@@ -15,9 +15,6 @@ export class ProductDetailsComponent implements OnInit {
   @Output()
   closeDetails = new EventEmitter<void>();
 
-  @Output()
-  openDialog = new EventEmitter<void>();
-
   quantity = 1;
 
   constructor(private cartService: CartService) { }
@@ -34,15 +31,12 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   checkNumber(){
-    if(this.quantity <1 || this.quantity == null) {
-      return true;
-    }
-    return false;
+    return this.quantity < 1 || this.quantity == null;
+
   }
 
   addToCart() {
     this.cartService.addProductToCart(this.product, this.quantity);
-    this.openDialog.emit();
     this.closeDetails.emit();
   }
 }

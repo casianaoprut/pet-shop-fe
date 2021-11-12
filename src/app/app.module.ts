@@ -20,6 +20,8 @@ import { ProductComponent } from './home-page/product/product.component';
 import { ProductDetailsComponent } from './home-page/product-details/product-details.component';
 import { HeaderComponent } from './header/header.component';
 import { CartComponent } from './cart/cart.component';
+import { UserOrderListComponent } from './order/user-order-list/user-order-list.component';
+import { OrderItemComponent } from './order/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CartComponent } from './cart/cart.component';
     AuthComponent,
     HeaderComponent,
     CartComponent,
-    AddedToCartDialog
+    AddedToCartDialog,
+    UserOrderListComponent,
+    OrderItemComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -16,11 +16,12 @@ export class OrderService {
     return this.http.post<Order>(
       this.apiUrl + "/add",
       {
-        orderPartViews: order.orderPartViews
-      }
-    ).subscribe(elem => {
-      console.log(elem);
+        orderPartViews: order.orderParts
       }
     );
+  }
+
+  public getUserOrders(){
+    return this.http.get<Order[]>(this.apiUrl + "/user-orders" );
   }
 }
