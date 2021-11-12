@@ -18,6 +18,8 @@
                 <input [(ngModel)]="cartElement.quantity" (ngModelChange)="onUpdateCart()" matInput type="number" placeholder="Ex. 12" min="1">
                 <span matSuffix>pcs.</span>
               </mat-form-field>
+              <p *ngIf="!checkStock(cartElement)"> Out of stock!</p>
+              <p *ngIf="!checkNumber(cartElement.quantity)"> This is not a valid number!</p>
             </div>
           </div>
         </mat-card-subtitle>
@@ -27,7 +29,7 @@
       </mat-card>
     </div>
     <h1><b>Price: </b>{{getPrice()}} RON</h1>
-    <button mat-raised-button color="primary" (click)="onPlaceOrder()" > Place Order</button>
+    <button mat-raised-button color="primary" (click)="onPlaceOrder()" [disabled]="!cartChecked"> Place Order</button>
   </div>
   <div *ngIf="cart.length == 0">
     <img src="assets/emptyCart.jpg" style="max-height: 500px" alt="emptyCart">

@@ -13,6 +13,8 @@ import {Subscription} from "rxjs";
 })
 export class CartComponent implements OnInit, OnDestroy {
 
+  cartChecked = true;
+
   cart: CartElement[] = [];
 
   cartSubscription = new Subscription();
@@ -24,6 +26,9 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.cartSubscription = this.cartService.cartListSubject.subscribe( cartList => {
         this.cart = cartList;
+        cartList.forEach(elem => {
+          this.cartChecked = elem.quantity <= elem.product.stock && elem.quantity >= 1;
+        })
     })
   }
 
@@ -60,4 +65,11 @@ export class CartComponent implements OnInit, OnDestroy {
     this.router.navigate(["/my-orders"]).then(() =>{});
   }
 
+  public checkStock(cartElement: CartElement) {
+    return cartElement.quantity <= cartElement.product.stock;
+  }
+
+  public checkNumber(quantity: number) {
+    return quantity >= 1;
+  }
 }
