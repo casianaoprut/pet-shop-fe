@@ -1,5 +1,8 @@
 <mat-toolbar>
   <span style="cursor: pointer" routerLink="/home-page">Pet Shop</span>
+<!--  <span>-->
+<!--    <img src="assets/logo3.jfif" routerLink="/home-page" alt="logo" style="max-height: 64px">-->
+<!--  </span>-->
   <span class="example-spacer"></span>
   <button *ngIf="!user" mat-button routerLink="/authentication">Authentication</button>
   <button *ngIf="user" mat-button [matMenuTriggerFor]="menu">

@@ -7,7 +7,7 @@ import {CartElement} from "../shared/model/cart-element.model";
 })
 export class CartService {
 
-  cartKey = "cartKey";
+  cartKey = "cartData";
 
   constructor() { }
 

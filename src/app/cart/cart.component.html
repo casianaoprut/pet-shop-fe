@@ -1,7 +1,8 @@
 <div class="center-screen" style="text-align: center;">
-  <div *ngFor="let cartElement of cart">
-    <mat-card *ngIf="cartElement != null" style="max-width: 500px; margin: 5px; display: inline-block">
-      <mat-card-title>{{cartElement.product.name}}</mat-card-title>
+  <div *ngIf="!(cart.length == 0)">
+    <div *ngFor="let cartElement of cart">
+      <mat-card *ngIf="cartElement != null" style="max-width: 500px; margin: 5px; display: inline-block">
+        <mat-card-title>{{cartElement.product.name}}</mat-card-title>
         <mat-card-subtitle>
           <div *ngIf="cartElement.product.photo !== undefined">
             <img
@@ -24,7 +25,12 @@
           <button mat-button (click)="onDelete(cartElement)">Delete</button>
         </mat-card-actions>
       </mat-card>
+    </div>
+    <h1><b>Price: </b>{{getPrice()}} RON</h1>
+    <button mat-raised-button color="primary" (click)="onPlaceOrder()" > Place Order</button>
   </div>
-  <h1><b>Price: </b>{{getPrice()}} RON</h1>
-  <button mat-raised-button color="primary" (click)="onPlaceOrder()" > Place Order</button>
+  <div *ngIf="cart.length == 0">
+    <img src="assets/emptyCart.jpg" style="max-height: 500px" alt="emptyCart">
+    <h1>Your cart is empty, go for a shopping session! :)</h1>
+  </div>
 </div>

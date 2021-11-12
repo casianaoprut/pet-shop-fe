@@ -51,4 +51,5 @@ export class CartComponent implements OnInit {
     this.cartService.emptyCart();
     this.router.navigate(["/my-orders"]).then(() =>{});
   }
+
 }
