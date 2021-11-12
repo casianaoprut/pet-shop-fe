@@ -45,4 +45,8 @@ export class CartService {
 
     localStorage.setItem(this.cartKey,JSON.stringify(cart));
   }
+
+  public emptyCart() {
+    localStorage.removeItem(this.cartKey);
+  }
 }

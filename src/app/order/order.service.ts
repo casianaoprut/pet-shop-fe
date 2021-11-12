@@ -8,15 +8,18 @@ import {Order} from "../shared/model/order.model";
 })
 export class OrderService {
 
-  apiUrl = environment.apiUrl + "/product";
+  apiUrl = environment.apiUrl + "/order";
 
   constructor(private http: HttpClient) { }
 
   public addOrder(order: Order){
     return this.http.post<Order>(
-      this.apiUrl + "/product",
+      this.apiUrl + "/add",
       {
-        order
+        orderPartViews: order.orderPartViews
+      }
+    ).subscribe(elem => {
+      console.log(elem);
       }
     );
   }
