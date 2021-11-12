@@ -4,8 +4,16 @@
   </div>
   <div class="pull-right">
     <div class="button-container">
-      <mat-chip-list *ngIf="!isCartEmpty" class="floatChip"><mat-chip selected color="warn">{{cartQuantity}}</mat-chip></mat-chip-list>
-      <button class="floatButton" mat-fab color="primary" [disabled]="isCartEmpty" routerLink="/cart">
+<!--      <mat-chip-list *ngIf="!isCartEmpty" class="floatChip"><mat-chip selected color="warn">{{cartQuantity}}</mat-chip></mat-chip-list>-->
+      <button
+        class="floatButton"
+        mat-fab
+        color="primary"
+        [disabled]="isCartEmpty"
+        routerLink="/cart"
+        matBadge="{{cartQuantity}}"
+        matBadgePosition="before"
+        matBadgeColor="warn">
         <mat-icon>shopping_cart</mat-icon>
       </button>
     </div>

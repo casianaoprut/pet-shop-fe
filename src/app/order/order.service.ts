@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Order} from "../shared/model/order.model";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class OrderService {
     );
   }
 
-  public getUserOrders(){
+  public getUserOrders(): Observable<Order[]>{
     return this.http.get<Order[]>(this.apiUrl + "/user-orders" );
   }
 }

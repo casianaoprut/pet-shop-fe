@@ -1,7 +1,10 @@
 import {OrderPart} from "./order-part.model";
 
-export interface Order {
-  status?: string,
-  username?: string,
+export interface Order{
+  id?: number;
+  status?: string;
+  username?: string;
+  date?: Date;
+  price?: number;
   orderParts: OrderPart[];
 }
