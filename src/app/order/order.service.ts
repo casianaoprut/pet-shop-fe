@@ -17,10 +17,11 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   public addOrder(order: Order){
+    console.log(order);
     return this.http.post<Order>(
       this.apiUrl + "/add",
       {
-        orderPartViews: order.orderPartList
+        orderPartList: order.orderPartList
       }
     );
   }

@@ -19,6 +19,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
   cartSubscription = new Subscription();
 
+  placeOrderSubscription = new Subscription();
+
   constructor(private cartService: CartService,
               private orderService: OrderService,
               private router: Router) { }
@@ -34,6 +36,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe();
+    this.placeOrderSubscription.unsubscribe();
   }
 
   onDelete(cartElement: CartElement) {
@@ -52,18 +55,19 @@ export class CartComponent implements OnInit, OnDestroy {
 
   onPlaceOrder() {
     const orderParts: OrderPart[] = this.cart.map(elem => {
+      console.log(elem.product.id);
         return {
           productId: elem.product.id,
           quantity: elem.quantity
         };
       }
     );
-    this.orderService.addOrder({
+    this.placeOrderSubscription = this.orderService.addOrder({
       orderPartList: orderParts
     }).subscribe(() => {
       this.cartService.emptyCart();
       this.router.navigate(["/my-orders"]).then(() =>{});
-    }).unsubscribe();
+    });
   }
 
   public checkStock(cartElement: CartElement) {
