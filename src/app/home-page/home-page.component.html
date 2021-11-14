@@ -1,8 +1,30 @@
+<app-product-editor
+  *ngIf="showEditor"
+  (closeEditor)="handleEditor()"
+></app-product-editor>
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
   <app-filter></app-filter>
   </mat-drawer>
   <div class="center-screen">
+    <div class="button-container" *ngIf="user!== null && user.role === 'ADMIN'">
+      <button
+        style="width: 134px"
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="onHandleEditMode()"
+      >{{editMode? "Close edit mode" : "Edit product list"}}</button>
+      <button
+        *ngIf="editMode"
+        style="margin-left: 10px; width: 134px"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="handleEditor()"
+      >Add new product</button>
+      <hr>
+    </div>
     <div *ngFor="let product of productList" style="width: 245px; margin: 5px; display: inline-block">
       <app-product [product]="product"></app-product>
     </div>

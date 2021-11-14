@@ -1,0 +1,91 @@
+<div class="backdrop"></div>
+<div class="details-box">
+
+  <div class="pull-right" style="text-align: right">
+    <button mat-raised-button
+            color="warn"
+            (click)="onClose()"
+            type="button"> X </button>
+  </div>
+  <div class="details-box-actions ">
+    <div>
+      <hr>
+      <div *ngIf="!showUploader">
+        <button
+          class="pull-right"
+          mat-button
+          type="button"
+          style="position: absolute"
+          (click)="handleUploader()">
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+        <img
+          id="preview"
+          [src]="photoUrl"
+          class="img-rounded imagine"
+          style="max-height: 250px; max-width: 100%;cursor: pointer"
+          [alt]="product.name"
+          (click)="handleUploader()"
+        >
+      </div>
+      <div *ngIf="showUploader">
+        <p-fileUpload
+          (uploadHandler)=handleUpload($event)
+          [auto]="true"
+          [customUpload]="true"
+          accept="image/*"
+          [maxFileSize]="1000000">
+        </p-fileUpload>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field class="input-style-class" appearance="fill">
+          <mat-label>Product name</mat-label>
+          <input matInput [(ngModel)]="product.name">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input-style-class">
+          <mat-label>Product category</mat-label>
+          <mat-select [(value)]="product.category">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input-style-class">
+          <mat-label>Product destined breed</mat-label>
+          <mat-select [(value)]="product.forBreed">
+            <mat-option *ngFor="let breed of breeds" [value]="breed">
+              {{breed}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="input-style-class" appearance="fill">
+          <mat-label>Product price</mat-label>
+          <input [(ngModel)]="product.price" matInput type="number" placeholder="Ex. 12" min="1">
+          <span matSuffix>pcs.</span>
+        </mat-form-field>
+        <mat-form-field class="input-style-class" appearance="fill">
+          <mat-label>Product stock</mat-label>
+          <input [(ngModel)]="product.stock" matInput type="number">
+          <span matSuffix>pcs.</span>
+        </mat-form-field>
+        <div>
+          <mat-form-field class="input-style-class" appearance="fill">
+            <mat-label>Product description</mat-label>
+            <textarea matInput [(ngModel)]="product.description"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div >
+      <button
+        style="margin: 5px"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onSave()"
+        >Save</button>
+    </div>
+  </div>
+</div>
+

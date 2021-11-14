@@ -24,6 +24,7 @@ import { UserOrderListComponent } from './order/user-order-list/user-order-list.
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { OrderItemComponent } from './order/order-list/order-item/order-item.component';
 import { FilterComponent } from './filter/filter.component';
+import { ProductEditorComponent } from './home-page/product-editor/product-editor.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FilterComponent } from './filter/filter.component';
     OrderListComponent,
     OrderItemComponent,
     FilterComponent,
+    ProductEditorComponent,
   ],
   imports: [
     AppRoutingModule,

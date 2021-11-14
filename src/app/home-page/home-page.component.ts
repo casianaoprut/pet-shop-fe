@@ -4,6 +4,8 @@ import {Product} from "../shared/model/product.model";
 import {Subscription} from "rxjs";
 import {CartService} from "../cart/cart.service";
 import {CartElement} from "../shared/model/cart-element.model";
+import {AuthService} from "../authentication/auth.service";
+import {User} from "../shared/model/user";
 
 @Component({
   selector: 'app-home-page',
@@ -19,10 +21,22 @@ export class HomePageComponent implements OnInit, OnDestroy {
   isCartEmpty = true;
 
   cartQuantity = 1;
+
+  cartSubscription = new Subscription();
+
+  editMode = false;
+
+  user: User | null = null;
+
+  userSubscription = new Subscription();
+
+  showEditor = false;
+
   showFiller = false;
 
   constructor(private productService: ProductService,
-              private cartService: CartService
+              private cartService: CartService,
+              private authService: AuthService
               ) { }
 
   ngOnInit(): void {
@@ -30,9 +44,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.productList = elem;
       }
     );
-    this.cartService.cartListSubject.subscribe(cartList => {
+    this.cartSubscription= this.cartService.cartListSubject.subscribe(cartList => {
       this.isCartEmpty = cartList.length == 0;
       this.cartQuantity = this.getCartQuantity(cartList);
+    });
+    this.userSubscription = this.authService.userSubject.subscribe(user => {
+      this.user = user;
     });
   }
 
@@ -44,6 +61,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
+  public onHandleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  public handleEditor() {
+    this.showEditor = !this.showEditor;
+  }
 }
