@@ -20,7 +20,8 @@
           <mat-icon>mode_edit</mat-icon>
         </button>
         <img
-          [src]="product.photo"
+          id="preview"
+          [src]="photoUrl"
           class="img-rounded imagine"
           style="max-height: 250px; max-width: 100%;cursor: pointer"
           [alt]="product.name"
@@ -29,7 +30,7 @@
       </div>
       <div *ngIf="showUploader">
         <p-fileUpload
-          (uploadHandler)=onUpload($event)
+          (uploadHandler)=handleUpload($event)
           [auto]="true"
           [customUpload]="true"
           accept="image/*"
@@ -63,6 +64,11 @@
           <input [(ngModel)]="product.price" matInput type="number" placeholder="Ex. 12" min="1">
           <span matSuffix>pcs.</span>
         </mat-form-field>
+        <mat-form-field class="input-style-class" appearance="fill">
+          <mat-label>Product stock</mat-label>
+          <input [(ngModel)]="product.stock" matInput type="number">
+          <span matSuffix>pcs.</span>
+        </mat-form-field>
         <div>
           <mat-form-field class="input-style-class" appearance="fill">
             <mat-label>Product description</mat-label>
@@ -77,6 +83,7 @@
         mat-raised-button
         color="primary"
         type="button"
+        (click)="onSave()"
         >Save</button>
     </div>
   </div>

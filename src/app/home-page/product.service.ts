@@ -26,4 +26,30 @@ export class ProductService {
     return this.http.delete(this.apiUrl + `/delete/${id}`);
   }
 
+  public edit(product: Product): Observable<Product> {
+    let productData = ProductService.createFormDataForProduct(product);
+    return this.http.put<Product>(this.apiUrl + "/edit",
+      productData);
+  }
+
+  public add(product: Product): Observable<Product> {
+    let productData = ProductService.createFormDataForProduct(product);
+    return this.http.post<Product>(this.apiUrl + "/add",
+      productData);
+  }
+
+  private static createFormDataForProduct(product: Product){
+    let productData = new FormData();
+    if(product.id != undefined){
+      productData.append('id', product.id.toString());
+    }
+    productData.append('description', product.description);
+    productData.append('name', product.name);
+    productData.append('forBreed', product.forBreed);
+    productData.append('category', product.category);
+    productData.append('stock', product.stock.toString());
+    productData.append('price', product.price.toString());
+    productData.append('photo', product.photo)
+    return productData;
+  }
 }

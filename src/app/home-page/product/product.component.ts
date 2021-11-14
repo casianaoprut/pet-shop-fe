@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit, OnDestroy {
               private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.photoUrl = environment.apiUrl + `/product/get-photo/${this.product.id}`;
+    this.photoUrl = environment.apiUrl + `/product/photo/${this.product.id}`;
   }
 
   ngOnDestroy(): void{
@@ -49,6 +49,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   public onDelete() {
+    if(this.product.id)
     this.productService.deleteProduct(this.product.id).subscribe();
   }
 

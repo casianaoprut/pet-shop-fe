@@ -30,6 +30,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   userSubscription = new Subscription();
 
+  showEditor = false;
+
   constructor(private productService: ProductService,
               private cartService: CartService,
               private authService: AuthService
@@ -65,7 +67,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.editMode = !this.editMode;
   }
 
-  onHandleAddPopUp() {
-
+  public handleEditor() {
+    this.showEditor = !this.showEditor;
   }
 }

@@ -1,3 +1,7 @@
+<app-product-editor
+  *ngIf="showEditor"
+  (closeEditor)="handleEditor()"
+></app-product-editor>
 <div class="center-screen">
   <div class="button-container" *ngIf="user!== null && user.role === 'ADMIN'">
     <button
@@ -13,7 +17,7 @@
       mat-raised-button
       color="primary"
       type="button"
-      (click)="onHandleAddPopUp()"
+      (click)="handleEditor()"
     >Add new product</button>
     <hr>
   </div>

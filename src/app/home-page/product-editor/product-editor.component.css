@@ -10,10 +10,10 @@
 
 .details-box {
   position: fixed;
-  top: 5vh;
+  top: 0;
   left: 20vw;
   width: 60vw;
-  height: 90vh;
+  height: 100vh;
   padding: 60px;
   background: white;
   z-index: 100;
@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-@media screen and (max-width: 564px) {
+@media screen and (max-width: 1000px) {
   .details-box{
     width: 100vw;
     left: 0;

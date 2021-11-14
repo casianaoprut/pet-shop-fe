@@ -15,7 +15,7 @@
             <p><b>Name: </b>{{product.name}}</p>
             <p><b>Category: </b>{{product.category}}</p>
             <p><b>For breed: </b>{{product.forBreed}}</p>
-            <p><b>Quantity ordered: </b>{{findQuantity(product.id)}}</p>
+            <p *ngIf="product.id"><b>Quantity ordered: </b>{{findQuantity(product.id)}}</p>
           </div>
         </p-panel>
       </div>

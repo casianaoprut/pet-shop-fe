@@ -1,12 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Product} from "../../shared/model/product.model";
+import {environment} from "../../../environments/environment";
+import {ProductService} from "../product.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product-editor',
   templateUrl: './product-editor.component.html',
   styleUrls: ['./product-editor.component.css']
 })
-export class ProductEditorComponent implements OnInit {
+export class ProductEditorComponent implements OnInit, OnDestroy {
 
   categories = [
     "Food",
@@ -24,9 +27,10 @@ export class ProductEditorComponent implements OnInit {
 
   showUploader = false;
 
+  photoUrl: string | ArrayBuffer | null = "";
+
   @Input()
   product: Product = {
-    id: -1,
     description: "",
     name: "",
     forBreed: "",
@@ -42,27 +46,45 @@ export class ProductEditorComponent implements OnInit {
   @Output()
   closeEditor = new EventEmitter<void>();
 
-  constructor() { }
+  subscription = new Subscription();
+
+  constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     if(!this.editMode){
       this.showUploader = true;
     }
+    this.photoUrl = environment.apiUrl + `/product/photo/${this.product.id}`;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onClose() {
     this.closeEditor.emit();
   }
 
-  onUpload(event: any) {
+  handleUpload(event: any) {
     const file = event.files[0] as File;
-    console.log(file);
-    this.product.photo = new Blob([file]);
-    let fileToBlob = async (file: { arrayBuffer: () => Iterable<number> | PromiseLike<Iterable<number>>; type: any; }) => new Blob([new Uint8Array(await file.arrayBuffer())], {type: file.type });
-    console.log(this.product.photo);
+    this.product.photo = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.photoUrl = reader.result;
+      this.handleUploader();
+    };
   }
 
   public handleUploader() {
     this.showUploader = !this.showUploader;
+  }
+
+  public onSave() {
+    if(this.editMode){
+      this.subscription = this.productService.edit(this.product).subscribe(() => this.closeEditor.emit());
+    } else {
+      this.subscription = this.productService.add(this.product).subscribe(() => this.closeEditor.emit());
+    }
   }
 }
