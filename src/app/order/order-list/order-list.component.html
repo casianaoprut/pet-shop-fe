@@ -1,0 +1,25 @@
+<div *ngFor="let order of orderList">
+  <div class="center-screen">
+    <div class="panel-container">
+      <p-panel header="Order #{{order.id}}"  [toggleable]="true">
+        <ng-template pTemplate="icons" *ngIf="order.status === 'Pending'">
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>settings</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onChangeStatus(order,'Accepted')">Accept Order</button>
+            <button mat-menu-item (click)="onChangeStatus(order,'Canceled')">Cancel order</button>
+          </mat-menu>
+        </ng-template>
+        <div>
+          <h4><b>Status: </b>{{order.status}}</h4>
+          <h4><b>Order placed by: </b>{{order.username}}</h4>
+          <h4><b>Date: </b>{{order.date}}</h4>
+          <h4><b>Total price: </b>{{order.price}} RON</h4>
+          <button mat-button color="primary" [routerLink]="[order.id]" >View full order</button>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</div>
+

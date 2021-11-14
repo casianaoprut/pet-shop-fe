@@ -31,7 +31,4 @@ export class ProductComponent implements OnInit {
     this.openDialog.emit();
   }
 
-  onOpenDialog(){
-    this.openDialog.emit();
-  }
 }

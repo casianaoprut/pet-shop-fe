@@ -15,8 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   @Output()
   closeDetails = new EventEmitter<void>();
 
-  @Output()
-  openDialog = new EventEmitter<void>();
+  quantity = 1;
 
   constructor(private cartService: CartService) { }
 
@@ -27,14 +26,17 @@ export class ProductDetailsComponent implements OnInit {
     this.closeDetails.emit();
   }
 
-  checkStock(value: string) {
-    const number = +value;
-    return this.product.stock < number;
+  checkStock() {
+    return this.product.stock < this.quantity;
   }
 
-  addToCart(value: string) {
-    this.cartService.addProductToCart(this.product, +value);
-    this.openDialog.emit();
+  checkNumber(){
+    return this.quantity < 1 || this.quantity == null;
+
+  }
+
+  addToCart() {
+    this.cartService.addProductToCart(this.product, this.quantity);
     this.closeDetails.emit();
   }
 }
