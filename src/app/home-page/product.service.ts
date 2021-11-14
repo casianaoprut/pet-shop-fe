@@ -22,4 +22,8 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiUrl + `/get-by-id-list`,{params});
   }
 
+  public deleteProduct(id: number){
+    return this.http.delete(this.apiUrl + `/delete/${id}`);
+  }
+
 }

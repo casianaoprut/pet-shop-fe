@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ButtonModule} from 'primeng/button';
 import {PanelModule} from 'primeng/panel';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import {PanelModule} from 'primeng/panel';
   exports: [
     InputNumberModule,
     ButtonModule,
-    PanelModule
+    PanelModule,
+    FileUploadModule
   ]
 })
 export class PrimengModule { }
