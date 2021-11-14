@@ -46,9 +46,3 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
 }
-
-@Component({
-  selector: 'added-to-cart-dialog',
-  templateUrl: 'added-to-cart-dialog.html',
-})
-export class AddedToCartDialog {}

@@ -59,7 +59,7 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     );
     this.orderService.addOrder({
-      orderParts: orderParts
+      orderPartList: orderParts
     }).subscribe(() => {
       this.cartService.emptyCart();
       this.router.navigate(["/my-orders"]).then(() =>{});

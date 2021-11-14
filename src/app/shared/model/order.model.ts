@@ -6,5 +6,5 @@ export interface Order{
   username?: string;
   date?: Date;
   price?: number;
-  orderParts: OrderPart[];
+  orderPartList: OrderPart[];
 }

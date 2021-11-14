@@ -1,0 +1,24 @@
+<div class="background"></div>
+<div class="order-box">
+  <mat-card>
+    <div *ngIf="order != null">
+      <h4><b>Status: </b>{{order.status}}</h4>
+      <h4><b>Order placed by: </b>{{order.username}}</h4>
+      <h4><b>Date: </b>{{order.date}}</h4>
+      <h4><b>Total price: </b>{{order.price}} RON</h4>
+    </div>
+    <div class="product-list-container">
+      <div *ngFor="let product of productList">
+        <p-panel header="#{{product.id}}">
+          <img src="assets/image-not-found.png" style="display: inline-block; max-width: 200px" alt="{{product.name}}">
+          <div style="display: inline-block">
+            <p><b>Name: </b>{{product.name}}</p>
+            <p><b>Category: </b>{{product.category}}</p>
+            <p><b>For breed: </b>{{product.forBreed}}</p>
+            <p><b>Quantity ordered: </b>{{findQuantity(product.id)}}</p>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </mat-card>
+</div>
