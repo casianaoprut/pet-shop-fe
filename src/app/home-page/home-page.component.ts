@@ -19,6 +19,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   isCartEmpty = true;
 
   cartQuantity = 1;
+  showFiller = false;
 
   constructor(private productService: ProductService,
               private cartService: CartService
