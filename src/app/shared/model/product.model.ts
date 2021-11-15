@@ -5,7 +5,7 @@ export interface Product{
   forBreed: string;
   category: string;
   stock: number;
-  photo: Blob;
+  photo?: Blob;
   price: number
 
 }

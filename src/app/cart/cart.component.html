@@ -6,7 +6,7 @@
         <mat-card-subtitle>
           <div *ngIf="cartElement.product.photo !== undefined">
             <img
-              src="/assets/image-not-found.png"
+              [src]="photoUrl + cartElement.product.id"
               class="img-responsive "
               style="max-height: 100px; max-width: 100%; display: inline-block; margin-right: 20px;"
               [alt]="cartElement.product.name"

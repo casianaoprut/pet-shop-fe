@@ -50,7 +50,9 @@ export class ProductService {
     productData.append('category', product.category);
     productData.append('stock', product.stock.toString());
     productData.append('price', product.price.toString());
-    productData.append('photo', product.photo)
+    if(product.photo != undefined) {
+      productData.append('photo', product.photo)
+    }
     return productData;
   }
 

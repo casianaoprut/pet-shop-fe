@@ -5,6 +5,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {OrderService} from "../../order.service";
 import {Order} from "../../../shared/model/order.model";
 import {Subscription} from "rxjs";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-order-item',
@@ -24,6 +25,8 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   orderSubscription = new Subscription();
 
   productListSubscription = new Subscription();
+
+  photoUrl = environment.apiUrl + "/product/photo/";
 
   constructor(private productService: ProductService,
               private orderService: OrderService,

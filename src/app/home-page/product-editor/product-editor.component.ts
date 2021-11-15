@@ -11,6 +11,9 @@ import {Subscription} from "rxjs";
 })
 export class ProductEditorComponent implements OnInit, OnDestroy {
 
+  @Output()
+  listChanged = new EventEmitter<void>();
+
   categories = [
     "Food",
     "Accessories",
@@ -82,9 +85,15 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
 
   public onSave() {
     if(this.editMode){
-      this.subscription = this.productService.edit(this.product).subscribe(() => this.closeEditor.emit());
+      this.subscription = this.productService.edit(this.product).subscribe(() => {
+        this.closeEditor.emit();
+        this.listChanged.emit();
+      });
     } else {
-      this.subscription = this.productService.add(this.product).subscribe(() => this.closeEditor.emit());
+      this.subscription = this.productService.add(this.product).subscribe(() =>{
+        this.listChanged.emit();
+      this.closeEditor.emit()}
+      );
     }
   }
 }

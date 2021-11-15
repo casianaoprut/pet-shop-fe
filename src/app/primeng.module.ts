@@ -4,6 +4,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {ButtonModule} from 'primeng/button';
 import {PanelModule} from 'primeng/panel';
 import {FileUploadModule} from 'primeng/fileupload';
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     InputNumberModule,
     ButtonModule,
     PanelModule,
-    FileUploadModule
+    FileUploadModule,
+    SidebarModule
   ]
 })
 export class PrimengModule { }
