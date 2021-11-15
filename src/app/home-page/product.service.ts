@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../shared/model/product.model";
 import {environment} from "../../environments/environment";
+import {Filter} from "../shared/model/filter.model";
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,15 @@ export class ProductService {
     productData.append('category', product.category);
     productData.append('stock', product.stock.toString());
     productData.append('price', product.price.toString());
-    productData.append('photo', product.photo)
+    if(product.photo != undefined) {
+      productData.append('photo', product.photo)
+    }
     return productData;
+  }
+
+  public getFilteredProducts(filter: Filter): Observable<Product[]>{
+    return this.http.post<Product[]>(this.apiUrl + "/filter", {
+      ...filter
+    });
   }
 }

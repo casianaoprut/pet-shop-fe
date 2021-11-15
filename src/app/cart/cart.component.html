@@ -1,16 +1,17 @@
 <div class="center-screen" style="text-align: center;">
   <div *ngIf="!(cart.length == 0)">
     <div *ngFor="let cartElement of cart">
-      <mat-card *ngIf="cartElement != null" style="max-width: 500px; margin: 5px; display: inline-block">
+      <mat-card *ngIf="cartElement != null" style="width: 460px;height: 340px; margin: 5px; display: inline-block">
         <mat-card-title>{{cartElement.product.name}}</mat-card-title>
         <mat-card-subtitle>
           <div *ngIf="cartElement.product.photo !== undefined">
-            <img
-              src="/assets/image-not-found.png"
-              class="img-responsive "
-              style="max-height: 100px; max-width: 100%; display: inline-block; margin-right: 20px;"
-              [alt]="cartElement.product.name"
-            >
+            <div class="img-container">
+              <img
+                [src]="photoUrl + cartElement.product.id"
+                class="img-responsive img-element"
+                [alt]="cartElement.product.name"
+              >
+            </div>
             <div style="display: inline-block">
               <h5>Price: {{cartElement.product.price}}.</h5>
               <h5>Breed: {{cartElement.product.forBreed}}</h5>

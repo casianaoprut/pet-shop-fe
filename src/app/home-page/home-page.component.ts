@@ -6,6 +6,7 @@ import {CartService} from "../cart/cart.service";
 import {CartElement} from "../shared/model/cart-element.model";
 import {AuthService} from "../authentication/auth.service";
 import {User} from "../shared/model/user";
+import {Filter} from "../shared/model/filter.model";
 
 @Component({
   selector: 'app-home-page',
@@ -18,9 +19,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   productSubscription = new Subscription();
 
+  filterSubscription = new Subscription();
+
+  refreshSubscription = new Subscription();
+
   isCartEmpty = true;
 
-  cartQuantity = 0;
+  cartQuantity = 1;
 
   cartSubscription = new Subscription();
 
@@ -31,6 +36,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   userSubscription = new Subscription();
 
   showEditor = false;
+
+  showFillers = false;
 
   constructor(private productService: ProductService,
               private cartService: CartService,
@@ -61,6 +68,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.productSubscription.unsubscribe();
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
+    this.filterSubscription.unsubscribe();
+    this.refreshSubscription.unsubscribe();
   }
 
   public onHandleEditMode() {
@@ -69,5 +78,21 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public handleEditor() {
     this.showEditor = !this.showEditor;
+  }
+
+  public handleFilters() {
+    this.showFillers = !this.showFillers;
+  }
+
+  public applyFilters($event: Filter) {
+    this.filterSubscription = this.productService.getFilteredProducts($event).subscribe( filteredList => {
+      this.productList = filteredList;
+    })
+  }
+
+  public refreshTheList() {
+    this.refreshSubscription = this.productService.getAllProducts().subscribe(productList => {
+      this.productList = productList;
+    });
   }
 }

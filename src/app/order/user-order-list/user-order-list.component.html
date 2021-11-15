@@ -1,11 +1,17 @@
 <div class="center-screen">
-  <div *ngFor="let order of orderList">
-    <div style="max-width: 600px; margin: 10px; text-align: left">
-      <p-panel header="Order with id: {{order.id}}">
-        <p><b>Total Price: </b> {{order.price}} RON</p>
-        <p><b>Added date: </b>{{order.date}}</p>
-        <p><b>Status: </b> {{order.status}}</p>
-      </p-panel>
+  <div *ngIf="orderList.length == 0">
+    <img src="assets/no%20orders.png" alt="noOrders">
+    <h1>You have no orders. You should change that right now! :D</h1>
+  </div>
+  <div *ngIf="!(orderList.length == 0)">
+    <div *ngFor="let order of orderList">
+      <div style="max-width: 600px; margin: 10px; text-align: left">
+        <p-panel header="Order with id: {{order.id}}">
+          <p><b>Total Price: </b> {{order.price}} RON</p>
+          <p><b>Added date: </b>{{order.date}}</p>
+          <p><b>Status: </b> {{order.status}}</p>
+        </p-panel>
+      </div>
     </div>
   </div>
 </div>

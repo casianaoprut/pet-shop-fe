@@ -10,7 +10,7 @@
     <div class="product-list-container">
       <div *ngFor="let product of productList">
         <p-panel header="#{{product.id}}">
-          <img src="assets/image-not-found.png" style="display: inline-block; max-width: 200px" alt="{{product.name}}">
+          <img [src]="photoUrl + product.id" style="display: inline-block; max-width: 200px" alt="{{product.name}}">
           <div style="display: inline-block">
             <p><b>Name: </b>{{product.name}}</p>
             <p><b>Category: </b>{{product.category}}</p>

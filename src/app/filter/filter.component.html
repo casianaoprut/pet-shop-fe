@@ -1,0 +1,35 @@
+<div class="filter-container">
+  <mat-form-field class="input-style-class" appearance="fill">
+    <mat-label>Product name</mat-label>
+    <input matInput [(ngModel)]="filter.name" (ngModelChange)="onApplyFilters()">
+  </mat-form-field>
+  <mat-form-field class="input-style-class" appearance="fill">
+    <mat-label>Min. price</mat-label>
+    <input [(ngModel)]="filter.minPrice" matInput type="number" (ngModelChange)="onApplyFilters()">
+    <span matSuffix>RON</span>
+  </mat-form-field>
+  <mat-form-field class="input-style-class" appearance="fill">
+    <mat-label>Max. price</mat-label>
+    <input [(ngModel)]="filter.maxPrice" matInput type="number" (ngModelChange)="onApplyFilters()">
+    <span matSuffix>RON</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="input-style-class">
+    <mat-label>Product category</mat-label>
+    <mat-select [(value)]="filter.category" (valueChange)="onApplyFilters()">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="input-style-class">
+    <mat-label>Product destined breed</mat-label>
+    <mat-select [(value)]="filter.breed" (valueChange)="onApplyFilters()">
+      <mat-option *ngFor="let breed of breeds" [value]="breed">
+        {{breed}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="button-container">
+    <button mat-button (click)="onClearFilters()" style="width: 105px">Clear filters</button>
+  </div>
+</div>

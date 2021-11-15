@@ -20,6 +20,7 @@ export class UserOrderListComponent implements OnInit, OnDestroy {
     this.orderSubscription = this.orderService.getUserOrders().subscribe( orderList => {
       if(orderList != null){
         this.orderList = orderList;
+        console.log(orderList);
       }
     });
   }

@@ -1,10 +1,16 @@
 <app-product-editor
   *ngIf="showEditor"
   (closeEditor)="handleEditor()"
+  (listChanged)="refreshTheList()"
 ></app-product-editor>
+<p-sidebar [(visible)]="showFillers" [baseZIndex]="1">
+  <app-filter (filtersChanged)="applyFilters($event)"></app-filter>
+</p-sidebar>
 <div class="center-screen">
-  <div class="button-container" *ngIf="user!== null && user.role === 'ADMIN'">
+  <div class="button-container">
+    <button mat-button color="primary" (click)="handleFilters()">{{showFillers? "Close Filters" : "Open Filters"}}</button>
     <button
+      *ngIf="user!== null && user.role === 'ADMIN'"
       style="width: 134px"
       mat-raised-button
       color="warn"
@@ -12,7 +18,7 @@
       (click)="onHandleEditMode()"
     >{{editMode? "Close edit mode" : "Edit product list"}}</button>
     <button
-      *ngIf="editMode"
+      *ngIf="editMode && user!== null && user.role === 'ADMIN'"
       style="margin-left: 10px; width: 134px"
       mat-raised-button
       color="primary"
@@ -24,8 +30,8 @@
   <div *ngFor="let product of productList" style="width: 245px; margin: 5px; display: inline-block">
     <app-product [product]="product" [editMode]="editMode"></app-product>
   </div>
-  <div class="pull-right" *ngIf="!editMode">
-    <div class="float-button-container">
+  <div class="pull-right">
+    <div class="button-container" *ngIf="!editMode">
       <button
         class="floatButton"
         mat-fab

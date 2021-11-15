@@ -5,6 +5,7 @@ import {OrderPart} from "../shared/model/order-part.model";
 import {OrderService} from "../order/order.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,8 @@ export class CartComponent implements OnInit, OnDestroy {
   cartSubscription = new Subscription();
 
   placeOrderSubscription = new Subscription();
+
+  photoUrl = environment.apiUrl + "/product/photo/";
 
   constructor(private cartService: CartService,
               private orderService: OrderService,
