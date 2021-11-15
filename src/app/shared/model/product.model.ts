@@ -4,8 +4,7 @@ export interface Product{
   name: string;
   forBreed: string;
   category: string;
-  stock: number;
+  stock?: number;
   photo?: Blob;
-  price: number
-
+  price?: number
 }

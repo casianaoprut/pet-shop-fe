@@ -38,9 +38,9 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
     name: "",
     forBreed: "",
     category: "",
-    stock: -1,
+    stock: undefined,
     photo: new Blob(),
-    price: -1
+    price: undefined
   };
 
   @Input()

@@ -48,8 +48,12 @@ export class ProductService {
     productData.append('name', product.name);
     productData.append('forBreed', product.forBreed);
     productData.append('category', product.category);
-    productData.append('stock', product.stock.toString());
-    productData.append('price', product.price.toString());
+    if(product.stock) {
+      productData.append('stock', product.stock.toString());
+    }
+    if(product.price) {
+      productData.append('price', product.price.toString());
+    }
     if(product.photo != undefined) {
       productData.append('photo', product.photo)
     }

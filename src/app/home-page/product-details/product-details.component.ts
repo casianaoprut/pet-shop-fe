@@ -27,7 +27,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   checkStock() {
-    return this.product.stock < this.quantity;
+    if(this.product.stock) {
+      return this.product.stock <= this.quantity;
+    } else {
+      return false;
+    }
   }
 
   checkNumber(){

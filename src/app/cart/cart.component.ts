@@ -32,7 +32,9 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cartService.cartListSubject.subscribe( cartList => {
         this.cart = cartList;
         cartList.forEach(elem => {
-          this.cartChecked = elem.quantity <= elem.product.stock && elem.quantity >= 1;
+          if(elem.product.stock) {
+            this.cartChecked = elem.quantity <= elem.product.stock && elem.quantity >= 1;
+          }
         })
     })
   }
@@ -52,7 +54,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
   getPrice(){
     let sum = 0;
-    this.cart.forEach(elem => sum = sum + (elem.product.price * elem.quantity));
+    this.cart.forEach(elem => {
+      if (elem.product.price) {
+        sum = sum + (elem.product.price * elem.quantity)
+      }
+    });
+
     return sum;
   }
 
@@ -74,7 +81,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   public checkStock(cartElement: CartElement) {
-    return cartElement.quantity <= cartElement.product.stock;
+    if(cartElement.product.stock) {
+      return cartElement.quantity <= cartElement.product.stock;
+    }
+    return null;
   }
 
   public checkNumber(quantity: number) {

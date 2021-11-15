@@ -26,7 +26,7 @@
       <p><b>Breed: </b>{{product.forBreed}}</p>
       <p><b>Category: </b>{{product.category}}</p>
       <p><b>Price: </b>{{product.price}} RON</p>
-      <p *ngIf="product.stock <= 10"> <b> Hurry up! There are less then 10 products available in our stock!</b></p>
+      <p *ngIf="product.stock && product.stock <= 10"> <b> Hurry up! There are less then 10 products available in our stock!</b></p>
     </div>
     <div >
       <mat-form-field appearance="fill">
