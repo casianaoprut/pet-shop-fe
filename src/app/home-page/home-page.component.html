@@ -4,11 +4,13 @@
 ></app-product-editor>
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-  <app-filter></app-filter>
+  <app-filter (filtersChanged)="applyFilters($event)"></app-filter>
   </mat-drawer>
   <div class="center-screen">
-    <div class="button-container" *ngIf="user!== null && user.role === 'ADMIN'">
+    <div class="button-container">
+      <button mat-button color="primary" (click)="handleFilters(drawer)">{{showFillers? "Close Filters" : "Open Filters"}}</button>
       <button
+        *ngIf="user!== null && user.role === 'ADMIN'"
         style="width: 134px"
         mat-raised-button
         color="warn"
@@ -16,7 +18,7 @@
         (click)="onHandleEditMode()"
       >{{editMode? "Close edit mode" : "Edit product list"}}</button>
       <button
-        *ngIf="editMode"
+        *ngIf="editMode && user!== null && user.role === 'ADMIN'"
         style="margin-left: 10px; width: 134px"
         mat-raised-button
         color="primary"

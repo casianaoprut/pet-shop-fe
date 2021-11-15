@@ -1,16 +1,8 @@
-.example-container {
-  width: 500px;
-  height: 300px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+.filter-container{
+  width: 150px;
 }
 
-.example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.example-sidenav {
-  padding: 20px;
+.input-style-class{
+  width: 140px;
+  margin: 5px;
 }
