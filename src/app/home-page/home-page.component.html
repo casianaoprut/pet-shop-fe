@@ -3,7 +3,7 @@
   (closeEditor)="handleEditor()"
   (listChanged)="refreshTheList()"
 ></app-product-editor>
-<p-sidebar [(visible)]="showFillers">
+<p-sidebar [(visible)]="showFillers" [baseZIndex]="1">
   <app-filter (filtersChanged)="applyFilters($event)"></app-filter>
 </p-sidebar>
 <div class="center-screen">

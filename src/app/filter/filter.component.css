@@ -1,8 +1,14 @@
 .filter-container{
-  width: 150px;
+  width: 300px;
+  z-index: 3;
 }
 
 .input-style-class{
   width: 200px;
   margin: 5px 40px;
+  z-index: 5;
+}
+
+.button-container{
+  margin-left: 30%;
 }
