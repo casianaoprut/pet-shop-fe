@@ -85,7 +85,6 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
 
   public onSave() {
     if(this.editMode){
-      console.log(this.product);
       this.subscription = this.productService.edit(this.product).subscribe(() => {
         this.closeEditor.emit();
         this.listChanged.emit();
