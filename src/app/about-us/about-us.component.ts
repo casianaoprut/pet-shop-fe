@@ -1,0 +1,21 @@
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+
+@Component({
+  selector: 'app-about-us',
+  templateUrl: './about-us.component.html',
+  styleUrls: ['./about-us.component.css']
+})
+export class AboutUsComponent implements OnInit {
+
+  @Output()
+  closeAboutUs = new EventEmitter<void>();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onClose() {
+    this.closeAboutUs.emit();
+  }
+}

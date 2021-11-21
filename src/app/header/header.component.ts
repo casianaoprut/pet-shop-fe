@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User|null = null;
 
   userSubscription = new Subscription();
+  showAboutUs = false;
 
   constructor(private authService: AuthService) {
   }
@@ -31,4 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
+  handleAboutUs() {
+    this.showAboutUs = !this.showAboutUs;
+  }
 }

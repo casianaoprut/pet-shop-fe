@@ -1,5 +1,6 @@
 <mat-toolbar>
   <span style="cursor: pointer" routerLink="/home-page">Pet Shop</span>
+  <button mat-button (click)="handleAboutUs()">About Us</button>
 <!--  <span>-->
 <!--    <img src="assets/logo3.jfif" routerLink="/home-page" alt="logo" style="max-height: 64px">-->
 <!--  </span>-->
@@ -14,3 +15,4 @@
     <button mat-menu-item (click)="doLogout()">Logout</button>
   </mat-menu>
 </mat-toolbar>
+<app-about-us *ngIf="showAboutUs" (closeAboutUs)="handleAboutUs()"></app-about-us>
