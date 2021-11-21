@@ -85,6 +85,7 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
 
   public onSave() {
     if(this.editMode){
+      console.log(this.product);
       this.subscription = this.productService.edit(this.product).subscribe(() => {
         this.closeEditor.emit();
         this.listChanged.emit();
@@ -92,7 +93,7 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
     } else {
       this.subscription = this.productService.add(this.product).subscribe(() =>{
         this.listChanged.emit();
-      this.closeEditor.emit()}
+        this.closeEditor.emit()}
       );
     }
   }

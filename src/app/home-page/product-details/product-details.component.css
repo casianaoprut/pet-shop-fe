@@ -5,18 +5,18 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 50;
+  z-index: 100;
 }
 
 .details-box {
   position: fixed;
-  top: 5vh;
+  top: 0;
   left: 20vw;
   width: 60vw;
-  height: 90vh;
+  height: 100vh;
   padding: 60px;
   background: white;
-  z-index: 100;
+  z-index: 150;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -27,6 +27,7 @@
 @media screen and (max-width: 564px) {
   .details-box{
     width: 100vw;
+    height: 100vh;
     left: 0;
   }
 }

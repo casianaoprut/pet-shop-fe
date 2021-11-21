@@ -6,5 +6,6 @@ export interface Product{
   category: string;
   stock?: number;
   photo?: Blob;
-  price?: number
+  price?: number;
+  onSale?: boolean;
 }

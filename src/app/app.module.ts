@@ -25,6 +25,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
 import { OrderItemComponent } from './order/order-list/order-item/order-item.component';
 import { FilterComponent } from './filter/filter.component';
 import { ProductEditorComponent } from './home-page/product-editor/product-editor.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ProductEditorComponent } from './home-page/product-editor/product-edito
     OrderItemComponent,
     FilterComponent,
     ProductEditorComponent,
+    AboutUsComponent,
   ],
   imports: [
     AppRoutingModule,

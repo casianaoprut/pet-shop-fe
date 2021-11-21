@@ -5,3 +5,11 @@
 .example-header-image {
   background-size: cover;
 }
+
+.backdrop {
+  position: absolute;
+  width: 245px;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 50;
+}

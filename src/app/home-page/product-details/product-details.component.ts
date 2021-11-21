@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../shared/model/product.model";
 import {CartService} from "../../cart/cart.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-product-details',
@@ -17,9 +18,12 @@ export class ProductDetailsComponent implements OnInit {
 
   quantity = 1;
 
+  photoUrl = "";
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.photoUrl = environment.apiUrl + `/product/photo/${this.product.id}`;
   }
 
   onClose() {
